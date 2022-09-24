@@ -80,7 +80,7 @@ def sendCSVToACS(file_location, storage_client, bucket_name):
 
 
 
-def main(event_data, context, config):
+def main(event_data, oontext, config):
     print(f'THE FOLLOWING IS THE METADATA ABOUT THE FILE: {context}')
     print(f'THE FOLLOWING IS THE EVENT DATA(FILE FROM GCS): {event_data}')
     #might not need the below
