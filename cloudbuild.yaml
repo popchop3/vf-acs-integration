@@ -9,3 +9,5 @@ steps:
       - --source=.
       - --trigger-bucket=vf-europe-west2-test
       - --runtime=python310
+
+#ADD EXTRA STEPS HERE TO ACCOUNT FOR ALL 3 regions. I.e 2 more steps for the different regions
