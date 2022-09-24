@@ -11,7 +11,7 @@ from google.cloud import storage, pubsub_v1
 
 def connectToStorageBucket(bucket_name, config):
     try:
-        storage_client = storage.Client(project=config["GCPROJECT"])
+        storage_client = storage.Client(project=config["GCPPROJECT"])
         print(f'Connected to "{bucket_name}"" bucket')
         print(f'Storage Client: {storage_client}')
     except Exception as e:
@@ -54,25 +54,25 @@ def addColumnsToCSV(file_name, bucket_name, config):
     #print("")
     
 
-def sendCSVToACS(file_location, storage_client, bucket_name, config):
-    print(file_location + " Llllllllll")
+def sendCSVToACS(file_name, storage_client, bucket_name, config):
+    print(file_name + " Llllllllll")
     acs_url = config["ACS"]["url"]
     bucket = storage_client.get_bucket(bucket_name)
     print(bucket)
-    blob = bucket.blob(file_location)
+    blob = bucket.blob(file_name)
     print(blob)
     print("12")#BROKEN HERE AS OF LAST NIGHT
     print(f'THIS IS THE BLOB NAME: {blob.name}')
-    downloaded_blob = blob.download_as_string()
-    print(f'DOWNLOADED BLOB:  {downloaded_blob}')
+    #downloaded_blob = blob.download_as_string()
+    #print(f'DOWNLOADED BLOB:  {downloaded_blob}')
     print("12.1")
-    blob = downloaded_blob.decode('utf-8')
+    #blob = downloaded_blob.decode('utf-8')
     print("12.2")
     
     print("13")
     print(f'BLOB: {blob}')
     print("14")
-    files = {"file": open(blob.name,'rb')}
+    files = {"file": open(blob,'rb')}
     print(files)
     print("15")
     response = requests.post(acs_url, files=files)
