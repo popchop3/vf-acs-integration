@@ -9,7 +9,7 @@ from google.cloud import storage, pubsub_v1
 
 
 
-def connectToStorageBucket(bucket_name):
+def connectToStorageBucket(bucket_name, config):
     try:
         storage_client = storage.Client()
         print(f'Connected to "{bucket_name}"" bucket')
@@ -20,7 +20,7 @@ def connectToStorageBucket(bucket_name):
     return storage_client
 
 
-def listNewCSVName(bucket_name, storage_client):
+def listNewCSVName(bucket_name, storage_client, config):
     blobs = storage_client.list_blobs(bucket_name)
     print("4")
     print(blobs)
@@ -42,7 +42,7 @@ def getFileNameFromFilePath(file_path):
 
 
 
-def addColumnsToCSV(file_name, bucket_name):
+def addColumnsToCSV(file_name, bucket_name, config):
     vf_df = pd.read_csv(f'gs://{bucket_name}/{config["CLOUDSTORAGE"]["inputfolder"]}{file_name}')#I.e like the following: "gs://vf-europe-west2-test/Input/23Aug2022-12_36-WA-Campaign_63047c708607fbc1c8cfddee_0_0.csv"
     acs_df = vf_df
     acs_df['Channel'] = "WhatsApp"
@@ -54,7 +54,7 @@ def addColumnsToCSV(file_name, bucket_name):
     #print("")
     
 
-def sendCSVToACS(file_location, storage_client, bucket_name):
+def sendCSVToACS(file_location, storage_client, bucket_name, config):
     print(file_location + " Llllllllll")
     acs_url = config["ACS"]["url"]
     bucket = storage_client.get_bucket(bucket_name)
@@ -106,12 +106,12 @@ def main(config):
     bucket_name = f'{config["SYSTEMS"]["source"]}-{config["LOCATION"]["region"]}-{config["ENV"]}'
     print(f'BucketName: {bucket_name}')
     print("2")
-    storage_client = connectToStorageBucket(bucket_name)
+    storage_client = connectToStorageBucket(bucket_name, config)
     print("3")
-    new_csv = listNewCSVName(bucket_name, storage_client)
+    new_csv = listNewCSVName(bucket_name, storage_client, config)
     print (f'This is the new csv file in the folder: {new_csv}')
     print("4")
-    addColumnsToCSV(new_csv,bucket_name)
+    addColumnsToCSV(new_csv,bucket_name, config)
     print("finished")
     #Now need to send this new file to the http endpoint using request libary, and if successful, move the older dataframe csv value first send to an archive foldder
     #sendCSVToACS(r'https://storage.cloud.google.com/vf-europe-west2-test/Input/23Aug2022-12_36-WA-Campaign_63047c708607fbc1c8cfddee_0_0.csv', storage_client, bucket_name)
