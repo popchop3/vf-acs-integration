@@ -80,7 +80,7 @@ def sendCSVToACS(file_location, storage_client, bucket_name):
 
 
 
-def main(config):
+def main(self, config):
     #might not need the below
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = f'{config["FILE"]["localdirectoryforcodeandfiles"]}{config["CLOUDSTORAGE"]["credentialkeyjsonpath"]}'
     bucket_name = f'{config["SYSTEMS"]["source"]}-{config["LOCATION"]["region"]}-{config["ENV"]}'
