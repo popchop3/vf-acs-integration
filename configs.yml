@@ -7,6 +7,8 @@ SYSTEMS:
 LOCATION: 
     region: "europe-west2"
 
+GCPPROJECT: "inspired-bus-362513"
+
 CLOUDSTORAGE:
     inputfolder: 'Input/'
     archivefolder: 'Archive/'

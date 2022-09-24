@@ -11,7 +11,7 @@ from google.cloud import storage, pubsub_v1
 
 def connectToStorageBucket(bucket_name, config):
     try:
-        storage_client = storage.Client()
+        storage_client = storage.Client(project=config["GCPROJECT"])
         print(f'Connected to "{bucket_name}"" bucket')
         print(f'Storage Client: {storage_client}')
     except Exception as e:
