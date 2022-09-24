@@ -78,13 +78,29 @@ def sendCSVToACS(file_location, storage_client, bucket_name):
     print(response.status_code)
     print(response.text)
 
-
-
-def main(config, event_data, context):
+def VfAcsFuncTest(event_data, context):
     print(f'THE FOLLOWING IS THE METADATA ABOUT THE FILE: {context}')
     print(f'THE FOLLOWING IS THE EVENT DATA(FILE FROM GCS): {event_data}')
+    try:
+        #add relative path to the config
+	    config_path = filePath=os.path.abspath(r'configs.yml')
+
+	    #Open config file
+	    with open(config_path,"r") as file:
+		    try:
+			    config = yaml.safe_load(file)
+		    except yaml.YAMLError as exc:
+			    print(exc)
+			    exit(exc)
+	    main(config)
+    except Exception as ex:
+        print(ex)
+
+def main(config):
+    print("BEFORE GOOGLE APP CREDENTIAL")
     #might not need the below
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = f'{config["FILE"]["localdirectoryforcodeandfiles"]}{config["CLOUDSTORAGE"]["credentialkeyjsonpath"]}'
+    print("BEFORE GOOGLE APP CREDENTIAL")
     print("THIS IS A CUSTOM LOG - HOPE YOU CAN SEE ON CLOUD FUNCTIONS LOGS")
     bucket_name = f'{config["SYSTEMS"]["source"]}-{config["LOCATION"]["region"]}-{config["ENV"]}'
     print(f'BucketName: {bucket_name}')
