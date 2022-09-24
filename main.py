@@ -16,6 +16,7 @@ def connectToStorageBucket(bucket_name):
         print(f'Storage Client: {storage_client}')
     except Exception as e:
         print("Failed to connect to Google Cloud Storage")
+        print(e)
     return storage_client
 
 
