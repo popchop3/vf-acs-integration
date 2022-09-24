@@ -78,11 +78,15 @@ def sendCSVToACS(file_location, storage_client, bucket_name):
     print(response.status_code)
     print(response.text)
 
-
+def my_background_function(self, event_data, context):
+    print(f'THE FOLLOWING IS THE METADATA ABOUT THE FILE: {context}')
+    print(f'THE FOLLOWING IS THE EVENT DATA(FILE FROM GCS): {event_data}')
+    main(self, config)
 
 def main(self, config):
     #might not need the below
-    #os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = f'{config["FILE"]["localdirectoryforcodeandfiles"]}{config["CLOUDSTORAGE"]["credentialkeyjsonpath"]}'
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = f'{config["FILE"]["localdirectoryforcodeandfiles"]}{config["CLOUDSTORAGE"]["credentialkeyjsonpath"]}'
+    print("THIS IS A CUSTOM LOG - HOPE YOU CAN SEE ON CLOUD FUNCTIONS LOGS")
     bucket_name = f'{config["SYSTEMS"]["source"]}-{config["LOCATION"]["region"]}-{config["ENV"]}'
     print(f'BucketName: {bucket_name}')
     print("2")
