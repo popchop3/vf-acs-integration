@@ -7,5 +7,5 @@ steps:
       - vf-acs-func-test
       - --region=europe-west2
       - --source=.
-      - --trigger-http
+      - --trigger-bucket=vf-europe-west2-test
       - --runtime=python310
