@@ -9,8 +9,8 @@ from google.cloud import storage, pubsub_v1
 from google.cloud.storage import Blob
 
 #setting global variables for the environment and the region based off of the variables passed hrough a runtime(decided in each step of the cloudbuild.yaml file)
-ENV=os.environ.get('ENV', "couldnt get the environment variable for the env"))
-REGION=os.environ.get('REGION', "couldnt get the environment variable for the region"))
+ENV=os.environ.get('ENV', "couldnt get the environment variable for the env")
+REGION=os.environ.get('REGION', "couldnt get the environment variable for the region")
 
 def connectToStorageBucket(bucket_name, config):
     try:
@@ -46,7 +46,14 @@ def getFileNameFromFilePath(file_path):
 
 
 def addColumnsToCSV(file_name, bucket_name, config):
+    #----------------===================================================================-------------------
+    #----------------===================================================================-------------------
+    #----------------===================================================================-------------------
+    #-------------LOOK INTO BELOW BECAUSE CLEARLY FUNCTION CAN ACCESS THE FILE VIA GSUTIL - SO SHOULD BE ABLE TO USE THIS URL TO OPEN FILE AND SEND TO ACS
     vf_df = pd.read_csv(f'gs://{bucket_name}/{config["CLOUDSTORAGE"]["inputfolder"]}{file_name}')#I.e like the following: "gs://vf-europe-west2-test/Input/23Aug2022-12_36-WA-Campaign_63047c708607fbc1c8cfddee_0_0.csv"
+    #----------------===================================================================-------------------
+    #----------------===================================================================-------------------
+    #----------------===================================================================-------------------
     acs_df = vf_df
     acs_df['Channel'] = "WhatsApp"
     acs_df['Vendor'] = "ValueFirst"
