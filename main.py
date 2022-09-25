@@ -81,9 +81,10 @@ def sendCSVToACS(file_location, storage_client, bucket_name, config):
     print(response.text)
 
 def myBackgroundFunction(event_data, context):
-    print(f'Environment Variable for env is: {os.environ.get('ENVIRONMENT', "couldn't get the environment variable for the env")}'
-    print(f'Environment Variable for region is: {os.environ.get('REGION', "couldn't get the environment variable for the region")}'
-
+    print("Below are environment variables")
+    print(os.environ.get('ENVIRONMENT', "couldnt get the environment variable for the env"))
+    print(os.environ.get('REGION', "couldnt get the environment variable for the region"))
+    print("Above are environment variables")
     print(f'THE FOLLOWING IS THE METADATA ABOUT THE FILE: {context}')
     print(f'THE FOLLOWING IS THE EVENT DATA(FILE FROM GCS): {event_data}')
     try:
