@@ -125,7 +125,7 @@ def myBackgroundFunction(event_data, context):
             print(ex)
     else:
         print(f'File "{event_data.get("id")}" placed in bucket was not in the input folder, so exiting function run.')
-        sys.exit(1)
+        os._exit(1)
 
 def main(config):
     print("BEFORE GOOGLE APP CREDENTIAL")
