@@ -5,7 +5,7 @@ steps:
       - functions
       - deploy
       - vf-acs-func-europe-west2-test
-      - --'set-build-env-vars', 'ENVIRONMENT=test', 'REGION=europe-west2'
+      - --set-build-env-vars, ENVIRONMENT=test, REGION=europe-west2
       - --region=europe-west2
       - --source=.
       - --entry-point=myBackgroundFunction
