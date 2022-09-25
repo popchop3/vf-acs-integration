@@ -12,59 +12,34 @@ steps:
       - --trigger-bucket=vf-europe-west2-test
       - --runtime=python310
         #MIGHT WANT TO SE BUILD VARIABLES SO I CAN USE HERE ALSO. CAN PARSE BUILD REGION THROUGH TO RUNTIME ALSO
-    - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-      args:
-      - gcloud
-      - functions
-      - deploy
-      - vf-acs-func-asia-southeast2-test
-      - --set-env-vars=ENV=test,REGION=asia-southeast2
-      - --region=asia-southeast2
-      - --source=.
-      - --entry-point=myBackgroundFunction
-      - --trigger-bucket=vf-asia-southeast2-test
-      - --runtime=python310
+        
+    #- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    #  args:
+    #  - gcloud
+    #  - functions
+    #  - deploy
+    #  - vf-acs-func-asia-southeast2-test
+    #  - --set-env-vars=ENV=test,REGION=asia-southeast2
+    #  - --region=asia-southeast2
+    #  - --source=.
+    #  - --entry-point=myBackgroundFunction
+    #  - --trigger-bucket=vf-asia-southeast2-test
+    #  - --runtime=python310
       
-    - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-      args:
-      - gcloud
-      - functions
-      - deploy
-      - vf-acs-func-us-west1-test
-      - --set-env-vars=ENV=test,REGION=us-west1
-      - --region=us-west1
-      - --source=.
-      - --entry-point=myBackgroundFunction
-      - --trigger-bucket=vf-us-west1-test
-      - --runtime=python310
+    #- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    #  args:
+    #  - gcloud
+    #  - functions
+    #  - deploy
+    #  - vf-acs-func-us-west1-test
+    #  - --set-env-vars=ENV=test,REGION=us-west1
+    #  - --region=us-west1
+    #  - --source=.
+    #  - --entry-point=myBackgroundFunction
+    #  - --trigger-bucket=vf-us-west1-test
+    #  - --runtime=python310
 
 
       #env:
       #- 'ENVIRONMENT=test'
       #- 'REGION=europe-west2'
-
-    #- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    #  args:
-    #  - gcloud
-    #  - functions
-    #  - deploy
-    #  - vf-acs-func-$LOCATION-test
-    #  - --region=$LOCATION
-    #  - --source=.
-    #  - --entry-point=myBackgroundFunction
-    #  - --trigger-bucket=vf-$LOCATION-test
-    #  - --runtime=python310
-    
-    #- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    #  args:
-    #  - gcloud
-    #  - functions
-    #  - deploy
-    #  - vf-acs-func-$LOCATION-test
-    #  - --region=$LOCATION
-    #  - --source=.
-    #  - --entry-point=myBackgroundFunction
-    #  - --trigger-bucket=vf-$LOCATION-test
-    #  - --runtime=python310
-
-#ADD EXTRA STEPS HERE TO ACCOUNT FOR ALL 3 regions. I.e 2 more steps for the different regions

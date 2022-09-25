@@ -61,12 +61,14 @@ def addColumnsToCSV(file_name, bucket_name, config):
     #print(campaign_id_num)
     acs_df['Campaign ID'] = f'ValueFirst {campaign_id_num}'
     print(acs_df)
+    acs_df.tocsv(f'gs://{bucket_name}/{config["CLOUDSTORAGE"]["inputfolder"]}updatedwithnewcolumns{file_name}updatedwithnewcolumns', index=False)
     #print("")
+    return updated_csv
     
 
 def sendCSVToACS(file_location, storage_client, bucket_name, config):
     print(file_location + " Llllllllll")
-    acs_url = config["ACS"]["url"]
+    acs_url = config["ACS"]["testurl"]
     bucket = storage_client.get_bucket(bucket_name)
     print(bucket)
     blob = bucket.blob(file_location)
@@ -126,7 +128,7 @@ def main(config):
     print (f'This is the new csv file in the folder: {new_csv}')
     print(type(new_csv))
     print("4")
-    addColumnsToCSV(new_csv,bucket_name, config)
+    df_with_new_columns = addColumnsToCSV(new_csv,bucket_name, config)
     print("finished")
     #Now need to send this new file to the http endpoint using request libary, and if successful, move the older dataframe csv value first send to an archive foldder
     sendCSVToACS("https://storage.googleapis.com/vf-europe-west2-test/Input/23Aug2022-12_36-WA-Campaign_63047c708607fbc1c8cfddee_0_0.csv", storage_client, bucket_name, config)

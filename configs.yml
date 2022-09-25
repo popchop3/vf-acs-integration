@@ -10,5 +10,6 @@ CLOUDSTORAGE:
     failurefolder: 'Failure/'
     
 ACS:
-    url: "https://httpbin.org/post"
+    testurl: "https://httpbin.org/post"
+    produrl:
 
