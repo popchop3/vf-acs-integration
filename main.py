@@ -93,7 +93,7 @@ def sendCSVToACS(file_location, storage_client, bucket_name, config):
     print(response.text)
 
 def myBackgroundFunction(event_data, context):
-    if 'Input/' in event_data["resource"]["name"]:
+    if 'Input/' in event_data[resource]["name"]:
         print("Below are environment variables")
         print(os.environ.get('ENV', "couldnt get the environment variable for the env"))
         print(os.environ.get('REGION', "couldnt get the environment variable for the region"))
