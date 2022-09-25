@@ -93,29 +93,29 @@ def sendCSVToACS(file_location, storage_client, bucket_name, config):
     print(response.text)
 
 def myBackgroundFunction(event_data, context):
-    if 'Input/' in event_data[resource]["name"]:
-        print("Below are environment variables")
-        print(os.environ.get('ENV', "couldnt get the environment variable for the env"))
-        print(os.environ.get('REGION', "couldnt get the environment variable for the region"))
-        print("Above are environment variables")
-        print(f'THE FOLLOWING IS THE METADATA ABOUT THE FILE: {context}')
-        print(f'THE FOLLOWING IS THE EVENT DATA(FILE FROM GCS): {event_data}')
-        try:
-            #add relative path to the config
-            config_path = filePath=os.path.abspath(r'configs.yml')
+    #if 'Input/' in event_data["resource"]["name"]:
+    print("BELOW!!!")
+    print(context["id"])
+    print("Below are environment variables")
+    print(os.environ.get('ENV', "couldnt get the environment variable for the env"))
+    print(os.environ.get('REGION', "couldnt get the environment variable for the region"))
+    print("Above are environment variables")
+    print(f'THE FOLLOWING IS THE METADATA ABOUT THE FILE: {context}')
+    print(f'THE FOLLOWING IS THE EVENT DATA(FILE FROM GCS): {event_data}')
+    try:
+        #add relative path to the config
+	    config_path = filePath=os.path.abspath(r'configs.yml')
 
-            #Open config file
-            with open(config_path,"r") as file:
-                try:
-                    config = yaml.safe_load(file)
-                except yaml.YAMLError as exc:
-                    print(exc)
-                    exit(exc)
-            main(config)
-        except Exception as ex:
-            print(ex)
-    else:
-        exit("The file that was just added to the bucket was not in the input folder")
+	    #Open config file
+	    with open(config_path,"r") as file:
+		    try:
+			    config = yaml.safe_load(file)
+		    except yaml.YAMLError as exc:
+			    print(exc)
+			    exit(exc)
+	    main(config)
+    except Exception as ex:
+        print(ex)
 
 def main(config):
     print("BEFORE GOOGLE APP CREDENTIAL")
