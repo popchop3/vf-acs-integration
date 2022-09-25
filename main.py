@@ -95,6 +95,7 @@ def sendCSVToACS(file_location, storage_client, bucket_name, config):
     response = requests.post(acs_url, files=files)
     print(response.status_code)
     print(response.text)
+    return response.status_code
 
 def myBackgroundFunction(event_data, context):
     print("-")
@@ -144,11 +145,15 @@ def main(config):
     print (f'This is the new csv file in the folder: {new_csv}')
     print(type(new_csv))
     print("8")
-    updated_csv_path = addColumnsToCSV(new_csv,bucket_name, config)
-    print(f'The following is the updaed csv path in cloud storage: {updated_csv_path}')
+    full_updated_csv_path = addColumnsToCSV(new_csv,bucket_name, config)
+    print(f'The following is the full updated csv path in cloud storage: {full_updated_csv_path}')
+    #gs://vf-europe-west2-test/Temp/updatedwithnewcolumns23Aug2022-12_36-WA-Campaign_63047c708607fbc1c8cfddee_0_0.csv
+    #Temp/updatedwithnewcolumns23Aug2022-12_36-WA-Campaign_63047c708607fbc1c8cfddee_0_0.csv
+    trimmed_updated_blob_path = full_updated_csv_path.split(bucket_name)[1].replace("/","",1)
+    print(trimmed_updated_blob_path)
     print("finished")
     #Now need to send this new file to the http endpoint using request libary, and if successful, move the older dataframe csv value first send to an archive foldder
-    sendCSVToACS('Temp/updatedwithnewcolumns23Aug2022-12_36-WA-Campaign_63047c708607fbc1c8cfddee_0_0.csv', storage_client, bucket_name, config)
+    response_code = sendCSVToACS(trimmed_updated_blob_path, storage_client, bucket_name, config)
     
     
 
