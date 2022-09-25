@@ -1,3 +1,4 @@
+######SEE IF YOU CAN ADD LOCAL VARIABLES HERE
 steps:
     - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
       args:
@@ -12,7 +13,7 @@ steps:
       - --trigger-bucket=vf-europe-west2-test
       - --runtime=python310
         #MIGHT WANT TO SE BUILD VARIABLES SO I CAN USE HERE ALSO. CAN PARSE BUILD REGION THROUGH TO RUNTIME ALSO
-        
+
     #- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     #  args:
     #  - gcloud

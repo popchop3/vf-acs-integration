@@ -87,8 +87,9 @@ def sendCSVToACS(file_location, storage_client, bucket_name, config):
     
     print("13")
     print(f'BLOB: {blob}')
+    blob.download_to_filename("/tmp/iamdonwloadedblob.csv")
     print("14")
-    files = {"file": open(blob.name,'rb')}
+    files = {"file": open("/tmp/iamdonwloadedblob.csv",'rb')}
     print(files)
     print("15")
     response = requests.post(acs_url, files=files)
