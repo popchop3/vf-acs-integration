@@ -95,8 +95,8 @@ def sendCSVToACS(file_location, storage_client, bucket_name, config):
     print(response.text)
 
 def myBackgroundFunction(event_data, context):
-    print("BELOW IS EVENT_DATA")
-    print(event_data['bucket'])
+    print("BELOW IS EVENT_DATA ID value")
+    print(event_data.get("id"))
     #if 'Input/' in event_data["resource"]["name"]:
     #print("BELOW!!!")
     #print(context["id"])
