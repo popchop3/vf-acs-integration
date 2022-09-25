@@ -28,13 +28,14 @@ def listNewCSVName(bucket_name, storage_client, config):
     print("4")
     print(blobs)
     print("5")
-    blob for blob in blobs if f'{config["CLOUDSTORAGE"]["inputfolder"]}' in blob.name and ".csv" in blob.name
-    print("Below blob was from the input folder")
-    print(blob.name)
-    print("7")
-    new_csv = getFileNameFromFilePath(blob.name)
-    return new_csv
-        
+    gen = (blob for blob in blobs if f'{config["CLOUDSTORAGE"]["inputfolder"]}' in blob.name and ".csv" in blob.name)
+    for blob in gen: 
+        print("Below blob was from the input folder")
+        print(blob.name)
+        print("7")
+        new_csv = getFileNameFromFilePath(blob.name)
+        return new_csv
+    
 
 
 def getFileNameFromFilePath(file_path):
