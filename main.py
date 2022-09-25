@@ -80,7 +80,7 @@ def sendCSVToACS(file_location, storage_client, bucket_name, config):
     print(response.status_code)
     print(response.text)
 
-def VfAcsFuncTest(event_data, context):
+def myBackgroundFunction(event_data, context):
     print(f'THE FOLLOWING IS THE METADATA ABOUT THE FILE: {context}')
     print(f'THE FOLLOWING IS THE EVENT DATA(FILE FROM GCS): {event_data}')
     try:
