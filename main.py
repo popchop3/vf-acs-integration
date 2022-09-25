@@ -61,7 +61,7 @@ def addColumnsToCSV(file_name, bucket_name, config):
     #print(campaign_id_num)
     acs_df['Campaign ID'] = f'ValueFirst {campaign_id_num}'
     print(acs_df)
-    acs_df.tocsv(f'gs://{bucket_name}/{config["CLOUDSTORAGE"]["inputfolder"]}updatedwithnewcolumns{file_name}updatedwithnewcolumns', index=False)
+    acs_df.to_csv(f'gs://{bucket_name}/{config["CLOUDSTORAGE"]["inputfolder"]}updatedwithnewcolumns{file_name}', index=False)
     #print("")
     return updated_csv
     
