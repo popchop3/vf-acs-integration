@@ -64,7 +64,7 @@ def addColumnsToCSV(file_name, bucket_name, config):
     #print(campaign_id_num)
     acs_df['Campaign ID'] = f'ValueFirst {campaign_id_num}'
     print(acs_df)
-    updated_csv_path = f'gs://{bucket_name}/Temp/updatedwithnewcolumns{file_name}'
+    updated_csv_path = f'gs://{bucket_name}/Temp/{file_name}'
     acs_df.to_csv(updated_csv_path, index=False)
     #print("")
     return updated_csv_path
@@ -88,9 +88,9 @@ def sendCSVToACS(file_location, storage_client, bucket_name, config):
     print("ABOVE FILENAME")
     print("13")
     print(f'BLOB: {blob}')
-    blob.download_to_filename("/tmp/iamdonwloadedblob.csv")
+    blob.download_to_filename(f'/tmp/{file_name}')
     print("14")
-    files = {"file": open("/tmp/iamdonwloadedblob.csv",'rb')}
+    files = {"file": open(f'/tmp/{file_name}','rb')}
     print(files)
     print("15")
     response = requests.post(acs_url, files=files)
@@ -103,7 +103,7 @@ def myBackgroundFunction(event_data, context):
     print("================================================================================================")
     print(f'New file placed in bucket: "{event_data.get("id")}"')
     print("================================================================================================")
-    if 'Input/' in event_data.get("id"):
+    if '/Input/' in event_data.get("id"):
         #if 'Input/' in event_data["resource"]["name"]:
         #print("BELOW!!!")
         #print(context["id"])
@@ -155,7 +155,7 @@ def main(config):
     print("finished")
     #Now need to send this new file to the http endpoint using request libary, and if successful, move the older dataframe csv value first send to an archive foldder
     response_code = sendCSVToACS(trimmed_updated_blob_path, storage_client, bucket_name, config)
-    if response_code[0] is 2:
+    if str(response_code)[0] is 2:
         print("-----------SUCCESS-----------")
     else:
         print("--------FAILURE--------")
