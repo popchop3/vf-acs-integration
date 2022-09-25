@@ -5,16 +5,16 @@ steps:
       - functions
       - deploy
       - vf-acs-func-europe-west2-test
-      - --set-env-vars ENVIRONMENT=test, REGION=europe-west2
+      - --set-build-env-vars ENVIRONMENT=test #REGION=europe-west2
       - --region=europe-west2
       - --source=.
       - --entry-point=myBackgroundFunction
       - --trigger-bucket=vf-europe-west2-test
       - --runtime=python310
       
-      env:
-      - 'ENVIRONMENT=test'
-      - 'REGION=europe-west2'
+      #env:
+      #- 'ENVIRONMENT=test'
+      #- 'REGION=europe-west2'
 
     #- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     #  args:
