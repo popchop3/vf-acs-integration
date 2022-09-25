@@ -73,7 +73,7 @@ def sendCSVToACS(file_location, storage_client, bucket_name, config):
     print("13")
     print(f'BLOB: {blob}')
     print("14")
-    files = {"file": open(blob,'rb')}
+    files = {"file": open(blob.name,'rb')}
     print(files)
     print("15")
     response = requests.post(acs_url, files=files)
