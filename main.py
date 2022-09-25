@@ -1,6 +1,7 @@
 import os
 import yaml
 import re
+import sys
 import pandas as pd
 import numpy as np
 import requests
@@ -95,8 +96,9 @@ def sendCSVToACS(file_location, storage_client, bucket_name, config):
     print(response.text)
 
 def myBackgroundFunction(event_data, context):
-    print("BELOW IS EVENT_DATA ID value")
-    print(event_data.get("id"))
+    print("================================================================================================")
+    print(f'New file placed in bucket: "{event_data.get("id")}"')
+    print("================================================================================================")
     if 'Input/' in event_data.get("id"):
         #if 'Input/' in event_data["resource"]["name"]:
         #print("BELOW!!!")
@@ -122,7 +124,8 @@ def myBackgroundFunction(event_data, context):
         except Exception as ex:
             print(ex)
     else:
-        exit(f'File placed in bucket was not in the input folder: {event_data.get("id")}')
+        print(f'File "{event_data.get("id")}" placed in bucket was not in the input folder, so exiting function run.')
+        sys.exit(1)
 
 def main(config):
     print("BEFORE GOOGLE APP CREDENTIAL")
@@ -138,7 +141,7 @@ def main(config):
     new_csv = listNewCSVName(bucket_name, storage_client, config)
     print (f'This is the new csv file in the folder: {new_csv}')
     print(type(new_csv))
-    print("4")
+    print("8")
     updated_csv_path = addColumnsToCSV(new_csv,bucket_name, config)
     print(f'The following is the updaed csv path in cloud storage: {updated_csv_path}')
     print("finished")
