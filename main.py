@@ -148,7 +148,7 @@ def main(config):
     print(f'The following is the updaed csv path in cloud storage: {updated_csv_path}')
     print("finished")
     #Now need to send this new file to the http endpoint using request libary, and if successful, move the older dataframe csv value first send to an archive foldder
-    sendCSVToACS('https://storage.googleapis.com/vf-europe-west2-test/Temp/updatedwithnewcolumns23Aug2022-12_36-WA-Campaign_63047c708607fbc1c8cfddee_0_0.csv', storage_client, bucket_name, config)
+    sendCSVToACS('Temp/updatedwithnewcolumns23Aug2022-12_36-WA-Campaign_63047c708607fbc1c8cfddee_0_0.csv', storage_client, bucket_name, config)
     
     
 
