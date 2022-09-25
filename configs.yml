@@ -1,11 +1,6 @@
-ENV: "test" #can be test or prod
-
 SYSTEMS:
     source: "vf"
     target: "acs"
-
-LOCATION: 
-    region: "europe-west2"
 
 GCPPROJECT: "inspired-bus-362513"
 
@@ -13,12 +8,7 @@ CLOUDSTORAGE:
     inputfolder: 'Input/'
     archivefolder: 'Archive/'
     failurefolder: 'Failure/'
-    credentialkeyjsonpath: "inspired-bus-362513-9a737b3dfe85.json"
     
 ACS:
     url: "https://httpbin.org/post"
 
-
-FILE:
-    listofheaderstovalidate: ['Phone Number', 'URL to communications hub', 'UID', 'ISO2 Code']
-    localdirectoryforcodeandfiles: 'C:\\Users\\sgreenle\\Documents\\Personal_Projects\\Unilever\\vf-acs-python\\'

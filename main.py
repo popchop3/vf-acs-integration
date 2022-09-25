@@ -8,7 +8,9 @@ from io import StringIO
 from google.cloud import storage, pubsub_v1
 from google.cloud.storage import Blob
 
-
+#setting global variables for the environment and the region based off of the variables passed hrough a runtime(decided in each step of the cloudbuild.yaml file)
+ENV=os.environ.get('ENV', "couldnt get the environment variable for the env"))
+REGION=os.environ.get('REGION', "couldnt get the environment variable for the region"))
 
 def connectToStorageBucket(bucket_name, config):
     try:
@@ -108,7 +110,7 @@ def main(config):
     #os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = f'{config["FILE"]["localdirectoryforcodeandfiles"]}{config["CLOUDSTORAGE"]["credentialkeyjsonpath"]}'
     print("BEFORE GOOGLE APP CREDENTIAL")
     print("THIS IS A CUSTOM LOG - HOPE YOU CAN SEE ON CLOUD FUNCTIONS LOGS")
-    bucket_name = f'{config["SYSTEMS"]["source"]}-{config["LOCATION"]["region"]}-{config["ENV"]}'
+    bucket_name = f'{config["SYSTEMS"]["source"]}-{REGION}-{ENV}'
     print(f'BucketName: {bucket_name}')
     print("2")
     storage_client = connectToStorageBucket(bucket_name, config)
