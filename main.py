@@ -6,6 +6,7 @@ import numpy as np
 import requests
 from io import StringIO
 from google.cloud import storage, pubsub_v1
+from google.cloud.storage import Blob
 
 
 
