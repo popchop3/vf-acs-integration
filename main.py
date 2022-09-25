@@ -55,12 +55,12 @@ def addColumnsToCSV(file_name, bucket_name, config):
     #print("")
     
 
-def sendCSVToACS(file_name, storage_client, bucket_name, config):
-    print(file_name + " Llllllllll")
+def sendCSVToACS(file_location, storage_client, bucket_name, config):
+    print(file_location + " Llllllllll")
     acs_url = config["ACS"]["url"]
     bucket = storage_client.get_bucket(bucket_name)
     print(bucket)
-    blob = bucket.blob(file_name)
+    blob = bucket.blob(file_locattion)
     print(blob)
     print("12")#BROKEN HERE AS OF LAST NIGHT
     print(f'THIS IS THE BLOB NAME: {blob.name}')
@@ -115,7 +115,7 @@ def main(config):
     addColumnsToCSV(new_csv,bucket_name, config)
     print("finished")
     #Now need to send this new file to the http endpoint using request libary, and if successful, move the older dataframe csv value first send to an archive foldder
-    sendCSVToACS(r'https://storage.cloud.google.com/vf-europe-west2-test/Input/{new_csv}', storage_client, bucket_name, config)
+    sendCSVToACS(new_csv, storage_client, bucket_name, config)
     
     
 
