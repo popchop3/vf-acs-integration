@@ -81,6 +81,9 @@ def sendCSVToACS(file_location, storage_client, bucket_name, config):
     print(response.text)
 
 def myBackgroundFunction(event_data, context):
+    print(f'Environment Variable for env is: {process.env.ENVIRONMENT}')
+    print(f'Environment Variable for region is: {process.env.REGION}')
+
     print(f'THE FOLLOWING IS THE METADATA ABOUT THE FILE: {context}')
     print(f'THE FOLLOWING IS THE EVENT DATA(FILE FROM GCS): {event_data}')
     try:

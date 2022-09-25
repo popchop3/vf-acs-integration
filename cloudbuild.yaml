@@ -4,12 +4,15 @@ steps:
       - gcloud
       - functions
       - deploy
-      - vf-acs-func-$LOCATION-test
-      - --region=$LOCATION
+      - vf-acs-func-europe-west2-test
+      - --region=europe-west2
       - --source=.
       - --entry-point=myBackgroundFunction
-      - --trigger-bucket=vf-$LOCATION-test
+      - --trigger-bucket=vf-europe-west2-test
       - --runtime=python310
+      env:
+      - 'ENVIRONMENT=test'
+      - 'REGION=europe-west2'
 
     #- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     #  args:
