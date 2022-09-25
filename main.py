@@ -96,6 +96,7 @@ def sendCSVToACS(file_location, storage_client, bucket_name, config):
     print(response.text)
 
 def myBackgroundFunction(event_data, context):
+    print("-")
     print("================================================================================================")
     print(f'New file placed in bucket: "{event_data.get("id")}"')
     print("================================================================================================")
@@ -124,8 +125,8 @@ def myBackgroundFunction(event_data, context):
         except Exception as ex:
             print(ex)
     else:
-        print(f'File "{event_data.get("id")}" placed in bucket was not in the input folder, so exiting function run.')
-        os._exit(1)
+        print(f'File "{event_data.get("id")}" placed in bucket was not in the input folder, so exiting function stopped running.')
+        os._exit(1) #exit without throwing exception - i.e it won't look like  the cloud functions failed
 
 def main(config):
     print("BEFORE GOOGLE APP CREDENTIAL")
