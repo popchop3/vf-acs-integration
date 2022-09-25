@@ -28,12 +28,12 @@ def listNewCSVName(bucket_name, storage_client, config):
     print("4")
     print(blobs)
     print("5")
-    for blob in blobs:
+    blob for blob in blobs if f'{config["CLOUDSTORAGE"]["inputfolder"]}' in blob.name and ".csv" in blob.name::
         print(blob.name)
-        if f'{config["CLOUDSTORAGE"]["inputfolder"]}' in blob.name and ".csv" in blob.name:
-            print("7")
-            new_csv = getFileNameFromFilePath(blob.name)
-            return new_csv
+        print("7")
+        new_csv = getFileNameFromFilePath(blob.name)
+        return new_csv
+        
 
 
 def getFileNameFromFilePath(file_path):
@@ -94,8 +94,8 @@ def sendCSVToACS(file_location, storage_client, bucket_name, config):
 
 def myBackgroundFunction(event_data, context):
     #if 'Input/' in event_data["resource"]["name"]:
-    print("BELOW!!!")
-    print(context["id"])
+    #print("BELOW!!!")
+    #print(context["id"])
     print("Below are environment variables")
     print(os.environ.get('ENV', "couldnt get the environment variable for the env"))
     print(os.environ.get('REGION', "couldnt get the environment variable for the region"))
