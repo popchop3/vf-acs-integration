@@ -60,7 +60,7 @@ def sendCSVToACS(file_location, storage_client, bucket_name, config):
     acs_url = config["ACS"]["url"]
     bucket = storage_client.get_bucket(bucket_name)
     print(bucket)
-    blob = bucket.blob(file_locattion)
+    blob = bucket.blob(file_location)
     print(blob)
     print("12")#BROKEN HERE AS OF LAST NIGHT
     print(f'THIS IS THE BLOB NAME: {blob.name}')
