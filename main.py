@@ -122,7 +122,7 @@ def myBackgroundFunction(event_data, context):
         except Exception as ex:
             print(ex)
     else:
-        exit(f'File placed in bucket was not in the input folder: {event_data.get("id")}'
+        exit(f'File placed in bucket was not in the input folder: {event_data.get("id")}')
 
 def main(config):
     print("BEFORE GOOGLE APP CREDENTIAL")
