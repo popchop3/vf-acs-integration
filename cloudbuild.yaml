@@ -21,7 +21,7 @@ steps:
       - --trigger-bucket=vf-asia-southeast2-test
       - --runtime=python310
     
-      - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
       args:
       - gcloud
       - functions
