@@ -4,35 +4,35 @@ steps:
       - gcloud
       - functions
       - deploy
-      - vf-acs-func-europe-west2-test
-      - --region=europe-west2
+      - vf-acs-func-$LOCATION-test
+      - --region=$LOCATION
       - --source=.
       - --entry-point=myBackgroundFunction
-      - --trigger-bucket=vf-europe-west2-test
+      - --trigger-bucket=vf-$LOCATION-test
       - --runtime=python310
 
-    - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-      args:
-      - gcloud
-      - functions
-      - deploy
-      - vf-acs-func-asia-southeast2-test
-      - --region=asia-southeast2
-      - --source=.
-      - --entry-point=myBackgroundFunction
-      - --trigger-bucket=vf-asia-southeast2-test
-      - --runtime=python310
+    #- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    #  args:
+    #  - gcloud
+    #  - functions
+    #  - deploy
+    #  - vf-acs-func-$LOCATION-test
+    #  - --region=$LOCATION
+    #  - --source=.
+    #  - --entry-point=myBackgroundFunction
+    #  - --trigger-bucket=vf-$LOCATION-test
+    #  - --runtime=python310
     
-    - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-      args:
-      - gcloud
-      - functions
-      - deploy
-      - vf-acs-func-us-west1-test
-      - --region=us-west1
-      - --source=.
-      - --entry-point=myBackgroundFunction
-      - --trigger-bucket=vf-us-west1-test
-      - --runtime=python310
+    #- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    #  args:
+    #  - gcloud
+    #  - functions
+    #  - deploy
+    #  - vf-acs-func-$LOCATION-test
+    #  - --region=$LOCATION
+    #  - --source=.
+    #  - --entry-point=myBackgroundFunction
+    #  - --trigger-bucket=vf-$LOCATION-test
+    #  - --runtime=python310
 
 #ADD EXTRA STEPS HERE TO ACCOUNT FOR ALL 3 regions. I.e 2 more steps for the different regions
