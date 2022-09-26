@@ -119,7 +119,7 @@ def myBackgroundFunction(event_data, context):
         print(f'THE FOLLOWING IS THE EVENT DATA(FILE FROM GCS): {event_data}')
         try:
             #add relative path to the config
-            config_path = filePath=os.path.abspath(r'test-configs.yml')
+            config_path = filePath=os.path.abspath(r'configs.yml')
 
             #Open config file
             with open(config_path,"r") as file:
@@ -172,7 +172,7 @@ def main(config):
 if __name__ == "__main__":
     try:
         #add relative path to the config
-	    config_path = filePath=os.path.abspath(r'test-configs.yml')
+	    config_path = filePath=os.path.abspath(r'configs.yml')
 
 	    #Open config file
 	    with open(config_path,"r") as file:
