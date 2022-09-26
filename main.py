@@ -96,10 +96,12 @@ def sendCSVToACS(file_location, storage_client, bucket_name, config):
     response = requests.post(acs_url, files=files)
     print(response.status_code)
     print(response.text)
-    if str(response_code)[0] == '2':
+    if str(response.status_code)[0] == '2':
         print("-----------SUCCESS-----------")
+        #########=========================1111111  IF SUCCESS, move  INPUT file from VF to archive folder. DELETE TEMP/ FILE 
     else:
         print("--------FAILURE--------")
+        ##=================-------------------- IF FAILURE, INPUT FILE MOVE TO FAILURE FOLDER. DELETE TEMP/ FILE
     return response.status_code
 
 def myBackgroundFunction(event_data, context):
@@ -158,7 +160,7 @@ def main(config):
     print(trimmed_updated_blob_path)
     print("finished")
     #Now need to send this new file to the http endpoint using request libary, and if successful, move the older dataframe csv value first send to an archive foldder
-    response_code = sendCSVToACS(trimmed_updated_blob_path, storage_client, bucket_name, config)
+    sendCSVToACS(trimmed_updated_blob_path, storage_client, bucket_name, config)
     
     
     
