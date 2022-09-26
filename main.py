@@ -105,10 +105,8 @@ def sendCSVToACS(file_location, storage_client, bucket_name, config):
     return response.status_code
 
 def myBackgroundFunction(event_data, context):
-    print("-")
-    print("================================================================================================")
+    print("=========================================================START OF FUNCTION CALL===========================================================")
     print(f'New file placed in bucket: "{event_data.get("id")}"')
-    print("================================================================================================")
     if '/Input/' in event_data.get("id"):
         #if 'Input/' in event_data["resource"]["name"]:
         #print("BELOW!!!")
@@ -121,7 +119,7 @@ def myBackgroundFunction(event_data, context):
         print(f'THE FOLLOWING IS THE EVENT DATA(FILE FROM GCS): {event_data}')
         try:
             #add relative path to the config
-            config_path = filePath=os.path.abspath(r'configs.yml')
+            config_path = filePath=os.path.abspath(r'{ENV}-configs.yml')
 
             #Open config file
             with open(config_path,"r") as file:
@@ -161,6 +159,7 @@ def main(config):
     print("finished")
     #Now need to send this new file to the http endpoint using request libary, and if successful, move the older dataframe csv value first send to an archive foldder
     sendCSVToACS(trimmed_updated_blob_path, storage_client, bucket_name, config)
+    print("=========================================================END OF FUNCTION CALL===========================================================")
     
     
     
