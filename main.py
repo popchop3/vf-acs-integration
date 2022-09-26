@@ -155,7 +155,7 @@ def main(config):
     print("finished")
     #Now need to send this new file to the http endpoint using request libary, and if successful, move the older dataframe csv value first send to an archive foldder
     response_code = sendCSVToACS(trimmed_updated_blob_path, storage_client, bucket_name, config)
-    if str(response_code)[0] is 2:
+    if str(response_code)[0].__eq__ '2':
         print("-----------SUCCESS-----------")
     else:
         print("--------FAILURE--------")
